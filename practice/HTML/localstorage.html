@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+/*
+        // 以下是將資料儲存在 localStorage 的三種寫法，以 key-value 的方式儲存
+        localStorage.colorSetting1 = '第一種方式';
+        localStorage['colorSetting2'] = '第二種方式';
+        localStorage.setItem('colorSetting3', '第三種方式');
+*/
+
+
+        var car ={
+            price:1999,
+            door:5,
+            color:"white"
+        };
+
+        // localStorage.setItem("car1" , car);
+
+        // 只能存字串，物件無法存，需要先轉字串
+        // var my_data = localStorage.getItem("car1");
+        // console.log(my_data.price);
+
+        
+
+        // var car_str = JSON.stringify(car);
+        // console.log(car);
+        // localStorage.setItem("car1", car_str);
+
+        var car_str = localStorage.getItem("car1");
+        console.log(car_str);
+
+        var car_obj = JSON.parse(car_str);
+        console.log(car_obj);
+
+        // 清除資料庫
+        localStorage.clear();
+
+    </script>
+</body>
+
+</html>

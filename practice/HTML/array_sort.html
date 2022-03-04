@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var fruits = ["Banana", "Orange", "Apple", "Mango"];
+        fruits.sort();
+
+        console.log(fruits); // ["Apple", "Banana", "Mango", "Orange"]
+
+
+        /*
+                var points = [40, 100, 1, 5, 25, 10];
+                points.sort(); // 字串方式去排序
+        
+                console.log(points); // [1, 10, 100, 25, 40, 5]
+                // 是以第一位元為排序
+        */
+
+
+        var points = [40, 100, 1, 5, 25, 10];
+        points.sort(function (a, b) {
+            return a - b;
+        }); // 字串方式去排序，小到大，要大到小：b-a
+
+        console.log(points); // [1, 10, 100, 25, 40, 5]
+
+        var cars = [
+            { type: "Volvo", year: 2016 },
+            { type: "Saab", year: 2001 },
+            { type: "BMW", year: 2010 }
+        ];
+
+        cars.sort(function (a, b) {
+            return a.year - b.year;
+        });
+
+        console.log(cars);
+
+
+        // 4.7正規表達式------------------------------------------
+
+        // 定義一個比對的規則，以下的 \s{1} 表示僅能有1個空格。
+        // i 是不管大小寫
+        var pattern = /the\s{1}book/i;
+        // 或以下這個寫法：
+        //var pattern = new RegExp(/the\s{1}book/);
+
+
+        // 以下是想要比對的字串
+        // var str = "the book";
+        var str = "The book";
+
+        alert(pattern.test(str));
+
+
+        // 取代
+        var str_2 = "visit abc and def and abc";
+        // g 全部搜尋取代，且不分大小寫
+        var new_str_2 = str_2.replace(/ABC/ig, "101");
+
+        console.log(new_str_2);
+        // visit abc and def and abc
+
+        //驗證電話格式 
+        var pattern = /^09\d{8}$/;
+
+        var str = "0912345678";
+
+        console.log(pattern.test(str));
+
+    </script>
+</body>
+
+</html>

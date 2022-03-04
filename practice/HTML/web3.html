@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      #file_input{
+        border: 1px solid red;
+        /* display: none; */
+      }
+      #file_name{
+        border: 1px solid blue;
+        display: inline-block;
+        min-width: 50px;
+        height: 18px;
+      }
+      #img_block{
+        border: 1px solid black;
+      }
+      .small_width{
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <input type="file" id="file_input">
+    <button type="button" id="choose_file">選取檔案</button>
+
+    <div id="img_block">
+      選擇的檔案：
+      <span id="file_name"></span><br>
+    </div>
+
+    <script>
+
+        /*
+        // 取值的兩種方法
+        var car = {
+            0: "white"
+        }
+        console.log(car[0]);
+
+        var car ={
+            color: "blue"
+        }
+        console.log(car.color);
+        */
+
+        
+        // 在文件找id為choose_file
+        var choose_file = document.getElementById("choose_file");
+        // console.log(choose_file);
+        var file_input = document.getElementById("file_input");
+        // 做事件上的綁定，使用者點擊會發生的事
+        choose_file.addEventListener("click",function(){
+            // alert("tt");
+            // 選取檔案也會跳出選取檔案的視窗了，click函式內建功能
+            file_input.click();
+        });        
+
+        // change代表狀態改變時，會觸發
+        file_input.addEventListener("change",function(){
+            // this動態綁定 這裡 = file_input
+            // this.files[0]所選檔案的資訊  this.files[0].name印出檔名
+            // console.log(this.files[0].name);
+            var file_name = document.getElementById("file_name");
+
+            // 將檔名丟進藍框裡面去
+            file_name.innerHTML = this.files[0].name;
+
+            // 預覽圖
+            let reader = new FileReader();
+            // 讀取選取檔案的資訊
+            reader.readAsDataURL(this.files[0]);
+            // 針對reader綁定一個事件 為 讀取完的狀態
+            reader.addEventListener("load",function(){
+                //base64 一個編碼的格式
+                // console.log(this.result); 
+                let img_block = document.getElementById("img_block");
+                // 在黑框裡面貼縮圖
+
+                // 第一種
+                /*
+                img_block.insertAdjacentHTML("beforeend",
+                '<img src = "' + this.result + 
+                '" class="small_width">');
+                */
+               
+                // 第二種
+                // 在``裡可以任意放變數，只是需要${}
+                img_block.insertAdjacentHTML("beforeend",
+                `<img src="${this.result}" class="small_width">`)
+                
+            });
+        });
+        
+
+    </script>
+  </body>
+</html>

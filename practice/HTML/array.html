@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+
+</head>
+
+<body>
+
+
+    <!-- 載入js檔 -->
+    <script src="../JS/array.js"></script>
+    <script>
+        // var my_arr = [1, 2, "其它文字", "test"];  // 第一種寫法
+        // var my_arr2 = new Array("1", "測試", 2); // 第二種寫法
+
+        // console.log(my_arr);
+        // console.log(my_arr2);
+
+
+        // var new_arr = [];
+        // var new_arr2 = new Array();
+
+        // console.log(new_arr);
+
+
+        // var my_arr = [1, 2, "其它文字", "test"];
+        // console.log(my_arr);
+
+
+        // var arr = ["1", 2, true, [3, "4"]];
+        // console.log(arr);
+        // console.log(arr.length); //arr的陣列長度為4
+        // console.log(arr[3]); //印出[3, "4"]
+        // console.log(arr[3][0]); //印出3
+
+
+        // var my_arr = ["a","b","c","d"];
+
+        // my_arr.push("新項目","e");
+        // my_arr.pop(); 
+        // my_arr.unshift("0");
+        // my_arr.shift();
+
+        // console.log(myarr[myarr.length-1]);
+        // for(var i = 0; i < my_arr.length; i++){
+        //     console.log(my_arr[i]);
+        // }
+
+        /*
+        // ----------平均數----------------------------------
+        var students_score = [50, 30, 87, 99, 71, 78];
+        var sum = 0;
+        for(var i=0; i < students_score.length; i++){
+            // sum = sum + students_score[i];
+            sum += students_score[i];
+        }
+        console.log(sum);
+        var avg = sum/students_score.length;
+        console.log(avg);
+        */
+
+        /*
+        // ------------------函式範例---------------------
+        function add(num1,num2){
+            return(num1+num2);
+        }
+
+        var result = add(1,2);
+        var result2 = add(3,5);
+
+        console.log(result);
+        console.log(result2);
+        */
+
+
+
+
+        var students_score = [50, 30, 87, 99, 71, 78];
+        var result = avg(students_score);
+        console.log(result);
+
+
+
+
+
+        // ---------------------------------------------------
+        // 函式回傳
+        // var line_ids = ["232fsda", "fsafsdf", "barwr", "232fsda", "98yfsae", "barwr"];
+        var line_ids_unique = [];
+        // console.log(id(line_ids));
+
+
+        
+        var arr1 = ["a","b","a","b"];
+        var new_arr = id(arr1);
+        console.log(new_arr);
+
+    </script>
+</body>
+
+</html>

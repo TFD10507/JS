@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="../all_func.js"></script>
+    <script>
+        // document.cookie = "food_id=abc";
+        // document.cookie = "ad_code=year2020";
+        setCookie("new_cookie", "new_value", 1); // 建立 cookie
+        console.log(getCookie("new_cookie"));    // 取得 new_cookie 的值
+        console.log(checkCookie("new_cookie"));  // 檢查 new_cookie 是否存在
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+
+</head>
+
+<body>
+    <!-- <button type="button" id="btn">按鈕</button> -->
+    <button type="button" id="btn">開啟視窗</button>
+    <button type="button" id="btn2">關閉視窗</button>
+
+
+    <a href="https://books.com.tw" target="new_window">books</a>
+    <!-- target：
+        請用new_window的名稱來開啟分頁，如果已經有了就用那個(會取代原本的網頁)，沒有就開個新分頁 -->
+    <!-- target = '_blank'會無止盡開新分頁，
+        但隨意改個名字，就可以解決無止盡新分頁問題，會到原本開啟的新分頁 -->
+    <a href="https://google.com.tw" target="window_name2">google</a>
+
+    <!-- script 寫在 body 的結束標籤之前 -->
+    <script>
+        var btn = document.getElementById("btn");
+        btn.addEventListener("click", function () {
+            console.log("視窗的 innerWidth：" + window.innerWidth);
+            console.log("視窗的 outerWidth：" + window.outerWidth);
+            console.log("視窗的 innerHeight：" + window.innerHeight);
+            console.log("視窗的 outerHeight：" + window.outerHeight);
+        });
+
+        /*
+                //   開啟視窗連到指定網址，以及關閉視窗：
+                // 開啟視窗
+                mywindow = window.open("https://tw.yahoo.com");
+        
+                // 關閉視窗
+                mywindow.close();
+        
+        */
+
+        var mywindow;
+
+        var btn = document.getElementById("btn");
+        btn.addEventListener("click", function () {
+
+            mywindow = window.open("https://tw.yahoo.com", "window_name2", "width=800,height=500");
+        });
+
+
+        var btn2 = document.getElementById("btn2");
+        btn2.addEventListener("click", function () {
+            mywindow.close(); // 將視窗關閉
+        });
+
+    </script>
+</body>
+
+</html>

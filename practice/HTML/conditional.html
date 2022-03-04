@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // var score = 81;
+        // if (score >= 60 && score <= 80) {
+        //     alert("60 ~ 80 之間");
+        // } else if (score >= 81 && score <= 100) {
+        //     alert("81 ~ 100 之間"); // 會執行這裡
+        // } else {
+        //     alert("其它情況");
+        // }
+
+
+        // var a = 3;
+        // switch (a) {
+        //     case "1":
+        //         console.log("a");
+        //         break;
+        //     case 1:
+        //         console.log("b");
+        //         break;
+        //     case 2:
+        //         console.log("c");
+        //         break;
+        //     default:
+        //         console.log("default");
+        // }
+
+
+
+
+        var store_name = "A 店家";
+        var store_star = 2;
+
+        // if 條件式寫法
+        if (store_star >= 0) {
+
+            if (store_star == 0) {
+                console.log(store_name + "無獲得星等");
+            } else if (store_star == 1 || store_star == 2) {
+                console.log(store_name + "星等 " + store_star + " 顆星");
+            } else {
+                console.log(store_name + "星等超過 2 顆星");
+            }
+
+        } else {
+            console.log(store_name + "星等是負的");
+        }
+
+
+// switch 條件式寫法
+        /*
+        if(store_star >= 0){
+          
+          switch(store_star){
+            case 0:
+              console.log(store_name + "無獲得星等");
+              break;
+            case 1:
+            case 2:
+              console.log(store_name + "星等 " + store_star + " 顆星");
+              break;
+            default:
+              console.log(store_name + "星等超過 2 顆星");
+          }
+          
+        }else{
+          console.log(store_name + "星等是負的");
+        }
+        */
+    </script>
+</body>
+
+</html>

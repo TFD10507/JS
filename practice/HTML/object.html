@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var car = {
+            price: 1000,
+            doors: 5,
+            drive: function(){
+                console.log("drive");
+            },
+            stop: function(){
+                console.log("stop");
+            }
+            // 兩種寫法
+            // stop(){
+            //     console.log("stop");
+            // }
+        };
+
+        // 兩種取值方式
+        console.log(car.price);
+        console.log(car["price"]);
+
+        car.drive();
+        car.stop();
+
+        // 新增屬性
+        car["color"] = "white";
+        console.log(car);
+
+        // 更新屬性
+        car.price = 2000;
+        console.log(car.price);
+
+
+
+        // 練習
+        var book = {
+            price: 299,
+            name: "書名",
+            author: "作者",
+        };
+        console.log(book);
+
+    </script>
+</body>
+</html>

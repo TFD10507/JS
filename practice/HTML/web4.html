@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/web4.css">
+</head>
+
+<body>
+    <ul class="list">
+        <li>
+            <button type="button" class="del">刪除</button>
+            這是文字1
+        </li>
+        <li>
+            <button type="button" class="del">刪除</button>
+            這是文字2
+        </li>
+    </ul>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        "use strict";
+
+        
+                var del = document.getElementsByClassName("del");
+                console.log(del);
+        
+                for (let i = 0; i < del.length; i++) {
+                    del[i].addEventListener("click", function () {
+                        // console.log("this");
+                        // 執行儲存的動作
+                        // this.closest("li").remove();
+        
+                        // 將刪除儲存下來
+                        // --------方式1：不太好--------------
+                        // 按鈕在第n次點擊時，不會閃爍
+                        this.disabled =true;
+                        let closest_li = this.closest("li");
+                        closest_li.style.opacity = 1;
+        
+                        let interval_id = setInterval(function () {
+                            // console.log(closest_li.style.opacity);
+        
+                            if (closest_li.style.opacity <= 0) {
+                                clearInterval(interval_id);
+                                closest_li.remove();
+                            } else {
+                                closest_li.style.opacity -= .1;
+                            }
+        
+                        }, 100);
+        
+        
+        
+                        // ----------方式2 css--------------------
+                        this.disabled = true;
+                        let closest_li = this.closest("li");
+                        // 將按鈕的類別加上-remove
+                        closest_li.classList.add("-remove");
+        
+                        setTimeout(function() {
+                            closest_li.remove();                    
+                        }, 1000);
+        
+        
+                        // --------方式3 jquery----------------------
+                        // $就是jQuery的別稱
+                        // this.disabled = true;
+                        // $(this).closest("li").fadeOut(1000, function(){
+                        //     // 外面的this跟裡面的這個不一樣，裡面的是li
+                        //     // console.log(this);
+                        //     $(this).remove();
+                        // });
+        
+        
+        
+                    });
+                }
+        
+
+        // -----------------方式4 jquery----------------
+        // 找出全部頁面上的按鈕
+        // $("button.del").on("click", function () {
+        //     this.disabled = true;
+        //     $(this).closest("li").fadeOut(1000, function () {
+        //         $(this).remove();
+        //     });
+
+        // });
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        input.card {
+            width: 42px;
+        }
+
+        .-error {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="#" method="#" id="the_form">
+
+        <div class="group">
+            <label>帳號：</label>
+            <input type="text" id="account">
+        </div>
+
+        <div class="group">
+            <label>email：</label>
+            <input type="email" id="email">
+        </div>
+
+        <div class="group">
+            <label>信用卡卡號：</label>
+            <input type="text" class="card" maxlength="4">
+            <input type="text" class="card" maxlength="4">
+            <input type="text" class="card" maxlength="4">
+            <input type="text" class="card" maxlength="4">
+        </div>
+
+        <div class="group">
+            <label>商品數量：</label>
+            <input type="range" min="1" max="10" value="5" class="product_count">
+            <span class="num" data-default="5">5</span>
+        </div>
+
+        <div class="group">
+            <button type="reset">清空</button>
+            <button type="submit">資料送出</button>
+        </div>
+
+    </form>
+    <script src="../JS/is.min.js"></script>
+
+    <script>
+        // 一、介面調整：
+        // 1、信用卡介面：keydown、keyup、focus
+        // 2、商品數量的介面：mousemove 事件
+        // 3、表單：reset 事件
+
+        // DOMcontentLoaded 可以確保找的東西是在頁面載入完進行
+        document.addEventListener("DOMContentLoaded", function () {
+            let cards = document.getElementsByClassName("card");
+            // console.log(cards);
+            for (i = 0; i < cards.length; i++) {
+                // console.log(i);
+                cards[i].addEventListener("keydown", function (e) {
+                    // e.preventDefault();// preventDefault停掉預設行為，在這裡是指使用者輸入的東西不要出現在欄位上
+
+                    // console.log(e.which);  //e.which轉換成代碼
+
+                    // 除了數字0-9及刪除鍵外，不得輸入其他字
+                    if ((e.which >= 48 && e.which <= 57) || e.which == 8) {
+                        // console.log(e.target.value.length);
+                        if (e.target.value.length == 0 && e.which == 8) {
+                            // console.log("here");
+                            let previous_el = this.previousElementSibling;
+                            previous_el.focus();
+                        }
+                    } else {
+                        e.preventDefault();
+                    }
+                });
+                cards[i].addEventListener("keyup", function (e) {
+                    // 解決中文字可以輸入的情形
+                    // 使用正規式：所有非數字字元\D，g所有
+                    let str = (e.target.value).replace(/\D/g, "");
+                    // console.log(str);
+                    e.target.value = str; //將中文輸入值用空字串取代
+
+                    // 希望使用者可以一直輸入下去
+                    // console.log(str.length);
+                    if (str.length == 4) {
+                        let next_el = this.nextElementSibling;
+                        if (next_el != null) {
+                            next_el.focus();
+                        }
+                        // if(next_el){
+                        //     next_el.focus();
+                        // }
+                    }
+                });
+                // cards[i].addEventListener("focus", function (e) {
+
+                // });
+            }
+
+            // 數量
+            let product_count_el = document.getElementsByClassName("product_count")[0];
+            let num_el = document.getElementsByClassName("num")[0];
+            product_count_el.addEventListener("mousemove", function () {
+                // console.log(this.value);
+                num_el.innerHTML = this.value;
+            });
+
+            let the_form_el = document.getElementById("the_form");
+            // let num_el = document.getElementsByClassName("num")[0];
+            the_form_el.addEventListener("reset", function () {
+                // console.log("e");
+                num_el.innerHTML = num_el.getAttribute("data-default");
+            });
+
+
+            the_form_el.addEventListener("submit", function (e) {
+                let account_el = document.getElementById("account");
+                let email_el = document.getElementById("email");
+                let cards_el = document.getElementsByClassName("card");
+                // console.log("e");
+
+                let card_str = "";
+                for (let i = 0; i < cards_el.length; i++) {
+                    // console.log(cards_el[i].value);
+                    card_str += cards_el[i].value;
+                }
+                console.log(card_str);
+                let send_data = true;
+
+                if (account_el.value == "") {
+                    account_el.classList.add("-error");
+                    send_data = false;
+                } else {
+                    account_el.classList.remove("-error");
+                }
+
+                // 借助第三方工具is.min.js
+                if (is.email(email_el.value)) {
+                    email_el.classList.remove("-error");
+                } else {
+                    email_el.classList.add("-error");
+                    send_data = false;
+                }
+
+                if (is.creditCard(card_str)) {
+                    for (let i = 0; i < cards_el.length; i++) {
+                        cards_el[i].classList.remove("-error");
+                    }
+                } else {
+                    for (let i = 0; i < cards_el.length; i++) {
+                        cards_el[i].classList.add("-error");
+                    }
+                    send_data = false;
+                }
+
+                if (send_data == false) {
+                    e.preventDefault();  //先停掉預設的送出行為
+                }
+
+            });
+
+        });
+
+
+
+
+
+        // 二、資料送出時(submit)，資料驗證：
+        // 1、帳號必填
+        // 2、email：符合格式
+        // 3、信用卡卡號：符合格式
+
+
+
+    </script>
+</body>
+
+</html>

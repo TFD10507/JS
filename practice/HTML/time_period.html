@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // console.log("程式一");
+        // console.log("程式二");
+        // console.log("程式三");
+
+        // setTimeout(function () {
+        //     console.log("程式四");
+        //     console.log("程式五");
+        // }, 5000); // 5 秒之後，執行第一個函式參數裡的程式。
+
+        // console.log("這裡的程式");
+
+
+        // 每隔幾秒，就執行某段程式。
+        // setInterval(function(){
+        //     console.log("執行");
+        // },3000);
+
+        var i = 0;
+
+        var interval_id = setInterval(function () {
+
+            console.log("執行");
+            i++;
+            if (i == 5) {
+                clearInterval(interval_id);
+                console.log("停止執行");
+            }
+
+        }, 3000);
+
+        console.log("interval 的 id：" + interval_id);
+
+
+        //在 console 中，隨機印出 0 ~ 9 的整數。
+        console.log(Math.floor(Math.random()*10));
+
+        //在 console 中，隨機印出 0 ~ 10 的整數。
+        console.log(Math.floor(Math.random()*11));
+
+        //在 console 中，隨機印出 1 ~ 10 的整數。
+        console.log(Math.floor(Math.random()*10)+1);
+        
+        //在 console 中，隨機印出 1 ~ 100 的整數。
+        console.log(Math.floor(Math.random()*100)+1);
+        
+    </script>
+</body>
+
+</html>

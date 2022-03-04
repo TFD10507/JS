@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 陣列的每個項目，都依序地跑過執行指定的程式，跑迴圈的意思
+        var numbers = [45, 4, 9, 16, 25];
+        numbers.forEach(function (value, index) { // 參數若沒有用到，可以省略不寫
+            console.log(value);
+        });
+
+        // 陣列裡的每個項目，都執行特定程式，要有回傳值(return)，然後會產生新的陣列，原陣列並不會被影響。
+
+        var numbers = [45, 4, 9, 16, 25];
+        var numbers2 = numbers.map(function (value, index) {
+            return value * 2;
+        });
+
+        console.log(numbers); // [45, 4, 9, 16, 25]
+        console.log(numbers2); // [90, 8, 18, 32, 50]
+
+    </script>
+</body>
+
+</html>

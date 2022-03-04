@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // function subtraction(a,b){
+        //     var result =a - b;
+        //     return result;
+        // // return後面的程式不會執行
+        //     console.log("會執行到這行程式嗎")
+        // }
+
+        // var my_num = subtraction(5,2);
+        // console.log("結果等於" + my_num);
+
+
+        // function add(a,b,cb){
+        //     let sum = a+ b;
+        //     return cb(sum ,2);
+        // }
+
+        // function division(sum , denominator){
+        //     let avg = sum / denominator;
+        //     return avg;
+        // }
+
+        // let result = add(4,8,division);
+        // console.log(result);
+
+
+        // (function my_func(a, b){
+        //     console.log("執行這裡" + (a + b));
+        //     return a + b ;
+        // })(1,2);
+
+
+        /*---------------------------------------------------------
+                // setTimeout會讓程式延遲執行，但會繼續向下執行程式，單位是毫秒
+                setTimeout(function () {
+                    console.log("1");
+                }, 1000);
+                console.log("2");
+        
+        ---------------------------------------------------------*/
+
+        /*---------------------------------------------------------
+                // 練習1：倒數 10 秒
+                function count(i) {
+        
+                    setTimeout(function () {
+                        console.log(i);
+                        i--;
+                        if (i >= 0) {
+                            count(i);
+                        }
+                    }, 1000);
+        
+                }
+                count(10);
+        ---------------------------------------------------------*/
+
+
+        /*---------------------------------------------------------
+                // 練習2：寫一個函式，將指定文字左邊補零
+                function str_pad(my_num, digits) {
+                    var my_num_str = my_num.toString();
+                    while(my_num_str.length < digits){
+                        my_num_str = "0" + my_num_str;
+                    }
+                    return my_num_str;
+                }
+        
+                var result = str_pad(9, 2);
+                console.log(result); // 09
+        
+                var result2 = str_pad(7, 3);
+                console.log(result2); // 007
+        ---------------------------------------------------------*/
+
+
+
+        // 練習3：使用遞迴，費氏數列(Fibonacci numbers)
+        var i = 0;
+        function fibonacci(n) {
+            if(n < 0){
+                return ;
+            }
+
+            i++;
+            if(n == 0){
+                return 0;
+            }
+            if(n == 1){
+                return 1;
+            }
+            return fibonacci(n-1) + fibonacci (n-2);
+        }
+
+        console.log(fibonacci(9) + "。fibonacci 函式執行了 " + i + " 次");
+
+        
+    </script>
+</body>
+
+</html>

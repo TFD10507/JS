@@ -1,0 +1,33 @@
+*{
+    box-sizing: border-box;
+  }
+  div.parent_block{
+    border: 1px solid black;
+    display: flex;
+  }
+  div.left_block{
+    border: 1px solid red;
+    flex-basis: 100px;
+    flex-shrink: 0;
+  }
+  div.left_block a.link{
+    text-decoration: none;
+  }
+  div.left_block a.-on{
+    color: red;
+  }
+  div.right_block{
+    border: 1px solid blue;
+    flex-grow: 1;
+    height: 300px;
+    overflow-y: auto;
+    
+    /* offsetTop 才會相對於這個元素 */
+    position: relative;
+  }
+  div.each_block{
+    border: 1px solid orange;
+    
+    /* height: 500px; */
+    min-height: 100%;
+  }

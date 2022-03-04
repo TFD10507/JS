@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .icon_external {
+            width: 12px;
+            margin-left: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://tw.yahoo.com/">yahoo 連結</a>
+    <br>
+
+    <a href="https://google.com/" target="_blank">google 開新分頁連結</a>
+    <br>
+
+    <a href="https://tw.printerest.com/" target="_blank">printerest開新分頁連結</a>
+    <br>
+
+    <!-- <img src="https://alldata.sgp1.digitaloceanspaces.com/images/external_link.png" class="icon_external"> -->
+
+
+    <script>
+// 函式宣告執行
+/*
+        function append_icon() {
+            var all_a = document.getElementsByTagName("a");
+            // console.log(all_a[0]);
+
+            for (let i = 0; i < all_a.length; i++) {
+                // console.log(all_a[i]);
+
+                // console.log(all_a[i].getAttribute("target"));
+                if (all_a[i].getAttribute("target") == "_blank") {
+                    // console.log(all_a[i]);
+
+                    // all_a[i].insertAdjacentHTML("beforeend","test");
+                    // beforeend：將test貼在a的結束標籤之前
+                    all_a[i].insertAdjacentHTML("beforeend", '<img src="https://alldata.sgp1.digitaloceanspaces.com/images/external_link.png" class="icon_external">');
+                    // 屬性要用單引號，不能用雙引號
+                }
+            }
+        }
+
+        append_icon();
+
+*/
+
+
+
+        // let i =0 ;
+        // while(i < 3){
+        //     console.log(i);
+        //     i++;
+        // }
+        // console.log("i 結果 = " + i);
+
+        // var result = (function (a ,b){
+        //     // console.log("test");
+        //     console.log(a);
+        //     return a + b;
+        // })(1, 2);
+
+        // console.log(result);
+
+        // add();
+
+
+
+// if1
+        (function () {
+            var all_a = document.getElementsByTagName("a");
+            // console.log(all_a[0]);
+
+            for (let i = 0; i < all_a.length; i++) {
+                // console.log(all_a[i]);
+
+                // console.log(all_a[i].getAttribute("target"));
+                if (all_a[i].getAttribute("target") == "_blank") {
+                    // console.log(all_a[i]);
+
+                    // all_a[i].insertAdjacentHTML("beforeend","test");
+                    // beforeend：將test貼在a的結束標籤之前
+                    all_a[i].insertAdjacentHTML("beforeend", '<img src="https://alldata.sgp1.digitaloceanspaces.com/images/external_link.png" class="icon_external">');
+                    // 屬性要用單引號，不能用雙引號
+                }
+            }
+        })();
+        // append_icon();
+
+
+    </script>
+</body>
+
+</html>

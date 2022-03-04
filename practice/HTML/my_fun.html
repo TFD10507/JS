@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function array_avg(my_arr) {
+
+            try {
+
+                for (let i = 0; i < my_arr.length; i++) {
+                    if (typeof my_arr[i] !== "number") {
+                        throw new Error("某項資料不符合");
+                    }
+                }
+
+                var total_score = 0;
+                for (let i = 0; i < my_arr.length; i++) {
+                    total_score += my_arr[i];
+                    //total_score = total_score + my_arr[i]; // 167
+                }
+                //console.log(total_score);
+                var average_score = total_score / my_arr.length;
+
+                var avg = average_score.toFixed(2);
+                return avg;
+
+            } catch (err) {
+                //console.log(err);
+                console.error(err);
+            }
+
+        }
+    </script>
+</body>
+
+</html>

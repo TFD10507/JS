@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      *{
+        box-sizing: border-box;
+      }
+      div.pic_item_block{
+        border: 1px solid blue;
+        display: inline-block;
+        font-size: 0;
+        width: 200px;
+        position: relative;
+      }
+      div.pic_item_block img{
+        width: 100%;
+      }
+      #overlay{
+        border: 1px solid black;
+        width: 200px;
+        height: 200px;
+        background-repeat: no-repeat;
+
+        /* 會變動 */
+        /* background-image: url("https://alldata.sgp1.digitaloceanspaces.com/images/snow.jpg"); */
+        background-size: 200%;
+        display: inline-block;
+        background-color: white;
+        
+        position: absolute;
+        border-radius: 50%;
+        box-shadow: 0px 0px 0px 1px black, 0px 0px 0px 3px white, 0px 0px 0px 5px black, 2px 2px 10px 5px gray;
+        display: none;
+      }
+
+      #overlay.-on{
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <p>註：圖片寬高 800x600</p>
+    <div class="pic_item_block">
+      <img src="https://alldata.sgp1.digitaloceanspaces.com/images/snow.jpg" id="img_zoom">
+      <div id="overlay"></div>
+    </div>
+    
+
+    <script>
+        function zoom_in(e){
+            // console.log("4");
+            let overlay_el = document.getElementById("overlay");
+            let img_zomm_el = document.getElementById("img_zoom");
+
+            // ========== 將背景圖動態綁定左邊圖片的src ============
+            // console.log(overlay_el.style.backgroundImage);
+            if(overlay_el.style.backgroundImage == ""){
+                overlay_el.style.backgroundImage = `url("${img_zomm_el.src}")`;
+            }
+            
+            // console.log(overlay_el.clientWidth); //看到overlay的寬度
+            // console.log(e.offsetX); //游標距離欄框寬度多少
+            // console.log(overlay_el.clientWidth / 2 - e.offsetX * 1);
+            // console.log(overlay_el.clientHeight / 2 - e.offsetY * 1);
+            overlay_el.style.backgroundPosition = `${overlay_el.clientWidth / 2 - e.offsetX * 2}px ${overlay_el.clientHeight / 2 - e.offsetY * 2}px`;
+
+            overlay_el.classList.add("-on");
+            overlay_el.style.left = e.offsetX + "px";
+            overlay_el.style.top = e.offsetY + "px";
+        }
+
+        function zoom_out(e){
+            document.getElementById("overlay").classList.remove("-on");
+        }
+
+
+        function zoom_event(){
+            // console.log("2");
+            let img_zoom_el = document.getElementById("img_zoom");
+
+            img_zoom_el.removeEventListener("mousemove",zoom_in);
+            img_zoom_el.removeEventListener("mouseout",zoom_out);
+
+            if(window.innerWidth >= 768){
+                img_zoom_el.addEventListener("mousemove",zoom_in);
+                // console.log("3");
+                img_zoom_el.addEventListener("mouseout",zoom_out);
+            }
+            
+        }
+
+        window.addEventListener("load",function(){
+            // console.log("1");
+            zoom_event();
+        });
+
+        window.addEventListener("resize",function(){
+            zoom_event();
+        });
+    </script>
+  </body>
+</html>

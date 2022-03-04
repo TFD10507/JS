@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // var a = "t";
+        // 儲存資料在本地儲存空間，只能存字串，key為mydata
+        // localStorage.setItem("mydata",a);
+
+
+        // 取資料
+        // var b = localStorage.getItem("mydata");
+        // console.log(b);
+
+
+        // 存物件。物件無法儲存！
+        var a = {
+            price:299
+
+        };
+        // 需要先轉為字串
+        // var a_str = JSON.stringify(a);
+        // console.log(a_str);
+
+        // localStorage.setItem("mydata",a_str);
+
+        // var b = localStorage.getItem("mydata");
+        // var b_obj = JSON.parse(b);
+        // console.log(b_obj.price);
+
+        var b = JSON.parse(localStorage.getItem("mydata"));
+        console.log(b_obj.price);
+    </script>
+</body>
+</html>

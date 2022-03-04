@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        // try裡面如果程式執行錯誤，就會進到catch執行；反之則不會
+        try {
+            // my_func("Welcome");
+            alert("hello");
+        } catch (e) {
+            alert("執行 error 的程式");
+            console.log(e);
+        }
+        alert("繼續執行");
+
+
+        //------------------------throw-------------------------
+        // throw 可以自訂丟出的錯誤訊息
+
+        function division(x, y) {
+            try {
+                if (y == 0) {
+                    throw "分母不能等於 0。";
+                }
+                return x / y;
+            } catch (error) {
+                return error;
+            }
+        }
+
+        var result1 = division(5, 2);
+        console.log(result1); // 2.5
+
+        var result2 = division(5, 0);
+        console.log(result2); // 分母不能等於 0。
+
+
+
+
+
+        function array_avg(my_arr) {
+
+            try {
+
+                for (let i = 0; i < my_arr.length; i++) {
+                    if (typeof my_arr[i] !== "number") {
+                        throw new Error("某項資料不符合");
+                    }
+                }
+
+                var total_score = 0;
+                for (let i = 0; i < my_arr.length; i++) {
+                    total_score += my_arr[i];
+                    //total_score = total_score + my_arr[i]; // 167
+                }
+                //console.log(total_score);
+                var average_score = total_score / my_arr.length;
+
+                var avg = average_score.toFixed(2);
+                return avg;
+
+            } catch (err) {
+                //console.log(err);
+                console.error(err);
+            }
+
+        }
+
+        var arr = [1, 2];
+        //var arr = [1, "2"];
+
+        var result = array_avg(arr);
+        console.log(result);
+
+
+
+    </script>
+</body>
+
+</html>

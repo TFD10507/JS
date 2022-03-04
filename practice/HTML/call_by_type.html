@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+//----------------物件、陣列皆為傳址呼叫的類型--------------
+        // var a = [1, 2];
+        // function add_number(x) {
+        //     x.push(3);
+        // }
+        // add_number(a);  // 傳的是記憶體中的位址
+
+        // console.log(a); // [1, 2, 3]
+
+
+        // var a = { first: "123", second: "456" };
+        // function add_key(x) {
+        //     x.third = "789";
+        // }
+        // add_key(a);    // 傳的是記憶體中的位址
+
+        // console.log(a); // {first: "123", second: "456", third: "789"} 
+
+
+// ----------------------複製物件-------------------------
+        var a = { first: "1", second: "2" };
+
+        // JSON.stringify() 把物件變成字串
+        var a_str = JSON.stringify(a);
+        console.log(a_str);
+
+        // JSON.parse 把字串轉成物件
+        var b = JSON.parse(a_str);
+
+        a.third = 'aaa';
+        console.log(a, b);
+
+// --------------------練習複製陣列-----------------------
+
+        // slice() 方法會回傳一個新陣列物件
+        var arr1 = ["a", "b", "c"];
+        var arr2 = arr1.slice();
+
+        arr2[2] = "d";
+
+        console.log(arr1); // ["a", "b", "c"]
+        console.log(arr2); // ["a", "b", "d"]
+
+
+
+    </script>
+</body>
+
+</html>

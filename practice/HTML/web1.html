@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+
+</head>
+<body>
+    <form action="https://tw.yahoo.com" method="post">
+        <input type="text" id="item1" placeholder="單價" name="price">
+        <input type="text" id="item2" placeholder="數量" name="count">
+        <button type="button" id="btn">按鈕</button>
+        <!-- https://tw.yahoo.com/?price=1&count=1&guccounter=1 
+            網址?後面的是傳送的資料   &是資料與資料的區隔-->
+    </form>
+
+    <br>
+    <p>結果：<span id="result"></span></p>
+
+
+    <script>
+        // console.log(window);
+
+        //為了讓script放在head，要寫一個程式來讓程式先跳過script。
+        //針對網頁上的文件(document)去綁定一個事件 DOM=寫的html
+        //document.addEventListener("DOMcontentLoaded",function(){
+            //找按鈕
+            var the_btn = document.getElementById("btn");
+            //console.log(the_bhn); //確認按鈕
+
+            //第一種寫法
+            the_btn.addEventListener("click",function(){
+                //alert("abc");  
+                let price_el = document.getElementById("item1");
+                let count_el = document.getElementById("item2");
+
+                //找出單價輸入值
+                // console.log(price_el.value);
+
+                let value_text = price_el.value * count_el.value;
+                console.log(value_text);
+
+                // let value_text = parseInt(price_el.value) + parseInt(count_el.value);
+                // console.log(value_text);
+
+                let result_el = document.getElementById("result");
+                result_el.innerHTML = value_text;
+            });
+        //});
+
+
+        /*
+        //第二種寫法
+        the_bhn.onclick = function(){
+            alert("abc");
+        };
+        */
+    </script>
+
+
+
+</body>
+</html>

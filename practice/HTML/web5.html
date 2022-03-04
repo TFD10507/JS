@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/web5.css">
+</head>
+
+<body>
+
+    <div style="border:1px solid blue;height: 1000px;"></div>
+    <div class="parent_block">
+
+        <div class="left_block">
+            <ul class="list">
+                <li><a href="#" id="link1" class="link -on">一</a></li>
+                <li><a href="#" id="link2" class="link">二</a></li>
+                <li><a href="#" id="link3" class="link">三</a></li>
+            </ul>
+        </div>
+
+        <div class="right_block" id="scroll_block">
+            <div class="each_block" data-id="link1">內容一
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum in itaque incidunt optio voluptas id
+                aliquam, odio placeat molestiae, maiores quaerat eum, deserunt iure aut modi. Quasi praesentium corrupti
+                vero?
+                <br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet veritatis molestiae quaerat vero quasi sed
+                voluptates asperiores, quisquam eaque quis sunt maxime earum dolorum itaque? Illum molestiae beatae unde
+                expedita.
+                <br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam iure id maxime, alias debitis similique
+                deserunt velit sint qui at tenetur? Quidem similique ullam eos magnam unde atque omnis a.
+            </div>
+
+
+            <div class="each_block" data-id="link2">內容二
+
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius sapiente eum expedita rerum? Dolorem
+                natus
+                ipsa vitae rem eveniet laudantium voluptatum recusandae mollitia incidunt! Quo sunt repellendus
+                necessitatibus esse dolore!
+                <br>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi ipsam itaque numquam ut voluptas
+                facere
+                sequi suscipit tenetur, incidunt minus veniam repellendus ea unde eius aliquam excepturi velit fugit
+                veritatis.
+                <br>
+            </div>
+
+            <div class="each_block" data-id="link3">內容三
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum in itaque incidunt optio voluptas id
+                aliquam, odio placeat molestiae, maiores quaerat eum, deserunt iure aut modi. Quasi praesentium corrupti
+                vero?
+                <br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet veritatis molestiae quaerat vero quasi sed
+                voluptates asperiores, quisquam eaque quis sunt maxime earum dolorum itaque? Illum molestiae beatae unde
+                expedita.
+                <br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam iure id maxime, alias debitis similique
+                deserunt velit sint qui at
+                <br>
+                tenetur? Quidem similique ullam eos magnam unde atque omnis a.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum in itaque incidunt optio voluptas id
+                aliquam, odio placeat molestiae, maiores quaerat eum, deserunt iure aut modi. Quasi praesentium corrupti
+                vero?
+                <br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet veritatis molestiae quaerat vero quasi sed
+                voluptates asperiores, quisquam eaque quis sunt maxime earum dolorum itaque? Illum molestiae beatae unde
+                expedita.
+                <br>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam iure id maxime, alias debitis similique
+                deserunt velit sint qui at tenetur? Quidem similique ullam eos magnam unde atque omnis a.
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        
+        var scroll_block_el = document.getElementById("scroll_block");
+        scroll_block_el.addEventListener("scroll", function () {
+            let block = this.querySelectorAll(".each_block");
+            //   console.log(block);
+
+            // 往父層parent_block找再往子層list找a
+            let left_links = this.closest("div.parent_block").querySelectorAll("a.link");
+            // console.log(left_links);
+            left_links.forEach(function (item, i) {
+                // console.log(item);
+                item.classList.remove("-on");
+            });
+
+            let link;
+            // offsetTop = 與父元素距離多少
+            // 所以block = each_block與right_block距離
+            // console.log(block[2].offsetTop);
+
+            // console.log(this.scrollTop);
+            // console.log(block[0].offsetTop - this.scrollTop);
+
+            for (let i = 0; i < block.length; i++) {
+                let each_pos = block[i].offsetTop - this.scrollTop;
+
+                if (each_pos <= 0 && each_pos >= - block[i].offsetHeight) {
+                    // console.log(i);
+                    let link_id = block[i].getAttribute("data-id");
+                    link = document.getElementById(link_id);
+                    // console.log(link);
+                }
+            }
+
+            link.classList.add("-on");
+        });
+
+        // 第二個部分:a連結
+        var leftlinks = document.getElementsByClassName("link");
+        for (let i = 0; i < leftlinks.length; i++) {
+            leftlinks[i].addEventListener("click", function (e) {
+                // console.log(e);
+
+                // 停掉預設行為
+                e.preventDefault();
+
+                // let link_id = this.id;
+                let link_id = this.getAttribute("id");
+                // console.log(link_id);
+
+                let each_block = document.querySelector("div.each_block[data-id = " + link_id + "]");
+                // console.log(each_block);
+                scroll_block_el.scrollTop = each_block.offsetTop + 1;
+            });
+        }
+
+
+
+    </script>
+</body>
+
+</html>
