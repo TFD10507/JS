@@ -3,6 +3,8 @@
 let task_list = document.getElementsByClassName("task_list")[0];
 let task_add = document.getElementsByClassName("task_add")[0];
 let task_name = document.getElementsByClassName("task_name")[0];
+
+// 點擊enter鍵也可以輸入待辦項目
 task_name.addEventListener("keydown", function (e) {
   // enter 的 ASCII Code 碼
   if (e.which === 13) {
@@ -10,6 +12,8 @@ task_name.addEventListener("keydown", function (e) {
   }
 });
 // console.log(task_add);
+
+// 當點擊新增時把項目新增進去
 task_add.addEventListener("click", function () {
   let task_text = task_name.value.trim();
   // localStorage.setItem('task_text', task_text);
@@ -49,6 +53,7 @@ task_add.addEventListener("click", function () {
 
     document.getElementsByClassName("task_name")[0].value = "";
 
+    // 為抓取資料而命名
     let task = {
       "item_id": item_id,
       "name": task_text, // 新增的待辦事項文字
@@ -60,6 +65,7 @@ task_add.addEventListener("click", function () {
     } else { // 若不存在
       tasks = [task];
     }
+    // 儲存到資料庫
     localStorage.setItem("tasks", JSON.stringify(tasks));
 
   }
@@ -111,26 +117,20 @@ function get_tasks() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-
   get_tasks(); // DOMContentLoaded 事件發生時，執行這裡的程式
-
 });
 
+// 綁定移除鍵
 document.addEventListener("click", function (e) {
   let btn_delete = e.target.classList.contains("btn_delete");
   let closest_li = e.target.closest("li");
-  closest_li.style.opacity = 1;
   if (btn_delete) {
     let r = confirm("確認移除？");
     if (r) {
-      let interval_id = setInterval(function () {
-        if (closest_li.style.opacity <= 0) {
-          clearInterval(interval_id);
-          closest_li.remove();
-        } else {
-          closest_li.style.opacity -= .1;
-        }
-      }, 100);
+      closest_li.classList.add("fade_out");
+      setTimeout(function () {
+        closest_li.remove();
+      }, 1000);
     }
 
     // if (r) {
@@ -148,6 +148,22 @@ document.addEventListener("click", function (e) {
     //   // 回存至 localStorage
     //   localStorage.setItem("tasks", JSON.stringify(updated_tasks));
     // }
+  }
+});
+
+
+let btn_empty = document.getElementsByClassName("btn_empty")[0];
+btn_empty.addEventListener("click",function(){
+  if(btn_empty){
+    let e = confirm("確認清空？");
+    if(e){
+      let task_list_lis = task_list.querySelectorAll("li");
+      console.log(task_list_lis);
+      task_list_lis.forEach( function(task_list_li, i) {
+        task_list_li.classList.add("fade_out");
+        task_list_li.remove();
+      }); 
+    }
   }
 });
 
