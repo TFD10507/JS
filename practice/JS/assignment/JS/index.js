@@ -127,27 +127,26 @@ document.addEventListener("click", function (e) {
   if (btn_delete) {
     let r = confirm("確認移除？");
     if (r) {
+      // 從localstorage移除資料
+      let item_id = closest_li.getAttribute("data-id");
+      let tasks = JSON.parse(localStorage.getItem("tasks"));
+      // 準備用來放要存到 localStorage 裡的資料
+      let updated_tasks = [];
+
+      tasks.forEach(function (task, i) {
+        if (item_id != task.item_id) {
+          updated_tasks.push(task);
+        }
+      });
+
+      // 回存至 localStorage
+      localStorage.setItem("tasks", JSON.stringify(updated_tasks));
+
       closest_li.classList.add("fade_out");
       setTimeout(function () {
         closest_li.remove();
       }, 1000);
     }
-
-    // if (r) {
-    //   // 從localstorage移除資料
-    //   let item_id = e.target.closest("li").getAttribute("data-id");
-    //   let tasks = JSON.parse(localStorage.getItem("tasks"));
-    //   let updated_tasks = [];
-
-    //   tasks.forEach(function (task, i) {
-    //     if(item_id != task.item_id){
-    //       updated_tasks.push(task);
-    //     }
-    //   });
-
-    //   // 回存至 localStorage
-    //   localStorage.setItem("tasks", JSON.stringify(updated_tasks));
-    // }
   }
 });
 
@@ -157,6 +156,9 @@ btn_empty.addEventListener("click", function () {
   if (btn_empty) {
     let e = confirm("確認清空？");
     if (e) {
+      
+      localStorage.clear();
+
       let task_list_lis = task_list.querySelectorAll("li");
       console.log(task_list_lis);
       for (let i = 0; i < task_list_lis.length; i++) {
