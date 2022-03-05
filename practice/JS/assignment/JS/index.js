@@ -153,16 +153,20 @@ document.addEventListener("click", function (e) {
 
 
 let btn_empty = document.getElementsByClassName("btn_empty")[0];
-btn_empty.addEventListener("click",function(){
-  if(btn_empty){
+btn_empty.addEventListener("click", function () {
+  if (btn_empty) {
     let e = confirm("確認清空？");
-    if(e){
+    if (e) {
       let task_list_lis = task_list.querySelectorAll("li");
       console.log(task_list_lis);
-      task_list_lis.forEach( function(task_list_li, i) {
-        task_list_li.classList.add("fade_out");
-        task_list_li.remove();
-      }); 
+      for (let i = 0; i < task_list_lis.length; i++) {
+        task_list_lis[i].classList.add("fade_out");
+      }
+      setTimeout(function () {
+        task_list_lis.forEach(function (task_list_li, i) {
+          task_list_li.remove();
+        });
+      }, 1000);
     }
   }
 });
