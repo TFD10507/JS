@@ -39,6 +39,7 @@ task_add.addEventListener("click", function () {
                         <span class="star" data-star="5"><i class="fas fa-star"></i></span>
                     </div>
                     <p class="para">`+ task_text + `</p>
+                    <input type="text" class="task_name_update -none" placeholder="更新待辦事項…" value="${task_text}">
                     </div>
                     <div class="right_block">
                     <div class="btn_flex">
@@ -98,6 +99,7 @@ function get_tasks() {
                         <span class="star" data-star="5"><i class="fas fa-star"></i></span>
                     </div>
                     <p class="para">`+ tasks[i].name + `</p>
+                    <input type="text" class="task_name_update -none" placeholder="更新待辦事項…" value="${tasks[i].name}">
                     </div>
                     <div class="right_block">
                     <div class="btn_flex">
@@ -156,7 +158,7 @@ btn_empty.addEventListener("click", function () {
   if (btn_empty) {
     let e = confirm("確認清空？");
     if (e) {
-      
+
       localStorage.clear();
 
       let task_list_lis = task_list.querySelectorAll("li");
@@ -173,3 +175,9 @@ btn_empty.addEventListener("click", function () {
   }
 });
 
+let btn_update = task_list.querySelectorAll("btn_update");
+btn_update.addEventListener("click", function (e) {
+
+  let task_name_update = e.target.closest("task_name_update");
+  
+});
