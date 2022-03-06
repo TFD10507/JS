@@ -191,4 +191,14 @@ div.middle_block input.task_name_update::placeholder{
   display: none;
 }
 
+div.task_list_parent ul.task_list > li:first-child button.btn_up{
+  background-color: lightgray !important;
+  cursor: not-allowed !important;
+  color: gray;
+}
+div.task_list_parent ul.task_list > li:last-child button.btn_down{
+  background-color: lightgray !important;
+  cursor: not-allowed !important;
+  color: gray;
+}
 

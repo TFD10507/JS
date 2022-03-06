@@ -213,9 +213,20 @@ document.addEventListener("click", function (e) {
         // 更新 localStorage
         localStorage.setItem("tasks", JSON.stringify(tasks));
       }
-
     }
   }
+});
 
-
+// 排序(往上)
+document.addEventListener("click", function (e) {
+  let task_list_li_up = e.target.closest("li");
+  let task_list_li_down = task_list_li_up.previousElementSibling;
+  // console.log(task_list_li_up);
+  // console.log(task_list_li_down);
+  let btn_up = e.target.classList.contains("btn_up");
+  let task_list_li_null = "";
+  console.log(task_list_li_null);
+  task_list_li_null = task_list_li_up;
+  task_list_li_up = task_list_li_down;
+  task_list_li_down = task_list_li_null;
 });
