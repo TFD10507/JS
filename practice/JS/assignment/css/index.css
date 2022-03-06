@@ -202,3 +202,15 @@ div.task_list_parent ul.task_list > li:last-child button.btn_down{
   color: gray;
 }
 
+/* ===== 重要性的星號 ===== */
+div.star_block{
+  display: inline-block;
+}
+div.star_block > span.star{
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 3px;
+}
+div.star_block > span.star.-on{
+  color: yellow;
+}

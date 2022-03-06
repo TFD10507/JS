@@ -1,12 +1,12 @@
 "use strict";
 
-function get_tasks(){
+function get_tasks() {
   let tasks = JSON.parse(localStorage.getItem("tasks"));
-  if(tasks){
+  if (tasks) {
 
     let list_html = "";
 
-    tasks.forEach(function(item, i){ // [{}, {}]
+    tasks.forEach(function (item, i) { // [{}, {}]
 
       list_html += `
         <li data-id="${item.item_id}">
@@ -47,19 +47,19 @@ function get_tasks(){
 }
 
 // 更新 localStorage 中的排序
-function items_sort(item_id, direction){
+function items_sort(item_id, direction) {
 
   let tasks = JSON.parse(localStorage.getItem("tasks"));
 
   // [{0}, {1}, {2}, {3}]
   // [{0}, {2}, {1}, {3}]
-  if(direction == "up"){ // 往上
+  if (direction == "up") { // 往上
     let current_li_index; // 2
     let current_li_data;  // {2}
     let before_li_data;   // {1}
 
-    tasks.forEach(function(task, i){
-      if(item_id == task.item_id){
+    tasks.forEach(function (task, i) {
+      if (item_id == task.item_id) {
         current_li_index = i; // 取得點擊的那項 li 的索引值
         current_li_data = task; // 取得點擊到的那項 li 的資料
         before_li_data = tasks[i - 1]; // 取得點擊到的那項 li 的前一項資料
@@ -72,13 +72,13 @@ function items_sort(item_id, direction){
 
   // [{0}, {1}, {2}, {3}]
   // [{0}, {2}, {1}, {3}]
-  if(direction == "down"){ // 往下
+  if (direction == "down") { // 往下
     let current_li_index; // 1
     let current_li_data;  // {1}
     let after_li_data;    // {2}
 
-    tasks.forEach(function(task, i){
-      if(item_id == task.item_id){
+    tasks.forEach(function (task, i) {
+      if (item_id == task.item_id) {
         current_li_index = i; // 取得點擊的那項 li 的索引值
         current_li_data = task; // 取得點擊到的那項 li 的資料
         after_li_data = tasks[i + 1]; // 取得點擊到的那項 li 的下一項資料
@@ -92,7 +92,7 @@ function items_sort(item_id, direction){
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
 
   // ******************* 從 localStorage 取得資料 ******************* //
   get_tasks();
@@ -100,18 +100,18 @@ document.addEventListener("DOMContentLoaded", function(){
   // ==== 待辦事項文字框的 focus 事件及 blur 事件觸發 ===== //
   var input_task_name = document.getElementsByClassName("task_name")[0];
 
-  input_task_name.addEventListener("focus", function(){
+  input_task_name.addEventListener("focus", function () {
     this.closest("div.task_add_block").classList.add("-on");
   });
-  input_task_name.addEventListener("blur", function(){
+  input_task_name.addEventListener("blur", function () {
     this.closest("div.task_add_block").classList.remove("-on");
   });
 
 
   // ==== text 欄位新增待辦事項 ===== //
-  input_task_name.addEventListener("keyup", function(e){
-    console.log( e.which );
-    if(e.which == 13){
+  input_task_name.addEventListener("keyup", function (e) {
+    console.log(e.which);
+    if (e.which == 13) {
       let button_task_add = document.getElementsByClassName("task_add")[0];
       button_task_add.click();
     }
@@ -119,11 +119,11 @@ document.addEventListener("DOMContentLoaded", function(){
 
   // 按下新增按鈕
   var button_task_add = document.getElementsByClassName("task_add")[0];
-  button_task_add.addEventListener("click", function(){
+  button_task_add.addEventListener("click", function () {
     let task_text = (input_task_name.value).trim();
     // let task_text = input_task_name.value;
 
-    if(task_text != ""){
+    if (task_text != "") {
 
       let item_id = Date.now(); // timestamp 當做該項的 id
 
@@ -172,9 +172,9 @@ document.addEventListener("DOMContentLoaded", function(){
       let tasks = JSON.parse(localStorage.getItem("tasks"));
       console.log(tasks);
 
-      if(tasks){ // 若存在
+      if (tasks) { // 若存在
         tasks.unshift(task); // [{}, {}]
-      }else{ // 若不存在
+      } else { // 若不存在
         tasks = [task];
       }
       localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -186,26 +186,26 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 // ==== 移除待辦事項 ===== //
-document.addEventListener("click", function(e){
+document.addEventListener("click", function (e) {
   //console.log(e);
   //if(e.target.getAttribute("id") == "abc"){
-  if(e.target.classList.contains("btn_delete")){
+  if (e.target.classList.contains("btn_delete")) {
     let r = confirm("確認移除？");
-    if (r){
+    if (r) {
 
       // ******************* 從 localStorage 移除資料 ******************* //
       let item_id = e.target.closest("li").getAttribute("data-id");
       let tasks = JSON.parse(localStorage.getItem("tasks"));
       let updated_tasks = [];
-      tasks.forEach(function(task, i){
-        if(item_id != task.item_id){
+      tasks.forEach(function (task, i) {
+        if (item_id != task.item_id) {
           updated_tasks.push(task);
         }
       });
       localStorage.setItem("tasks", JSON.stringify(updated_tasks));
 
       e.target.closest("li").classList.add("fade_out");
-      setTimeout(function(){
+      setTimeout(function () {
         e.target.closest("li").remove();
       }, 1000);
     }
@@ -215,19 +215,19 @@ document.addEventListener("click", function(e){
 
 // ==== 清空待辦事項 ===== //
 var button_btn_empty = document.getElementsByClassName("btn_empty")[0];
-button_btn_empty.addEventListener("click", function(){
+button_btn_empty.addEventListener("click", function () {
   let r = confirm("確認清空？")
-  if (r){
+  if (r) {
 
     // ******************* 從 localStorage 移除資料 ******************* //
     localStorage.clear();
 
 
     let ul_task_list = document.getElementsByClassName("task_list")[0];
-    for(let i = 0; i < ul_task_list.children.length; i++){
+    for (let i = 0; i < ul_task_list.children.length; i++) {
       ul_task_list.children[i].classList.add("fade_out");
     }
-    setTimeout(function(){
+    setTimeout(function () {
       ul_task_list.innerHTML = "";
     }, 1000);
 
@@ -235,21 +235,21 @@ button_btn_empty.addEventListener("click", function(){
 });
 
 // ==== 更新待辦事項 ===== //
-document.addEventListener("click", function(e){
-  if(e.target.classList.contains("btn_update")){
-    if(e.target.getAttribute("data-edit") == undefined){ // 進入編輯狀態
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("btn_update")) {
+    if (e.target.getAttribute("data-edit") == undefined) { // 進入編輯狀態
 
       e.target.setAttribute("data-edit", true);
       let li_el = e.target.closest("li");
       li_el.querySelector("p.para").classList.toggle("-none");
       li_el.querySelector("input.task_name_update").classList.toggle("-none");
 
-    }else{
+    } else {
       let update_task_name = (e.target.closest("li").querySelector("input.task_name_update").value).trim();
 
-      if(update_task_name == ""){
+      if (update_task_name == "") {
         alert("請輸入待辦事項");
-      }else{
+      } else {
         let p_el = e.target.closest("li").querySelector("p.para");
         p_el.innerHTML = update_task_name;
         p_el.classList.toggle("-none");
@@ -265,8 +265,8 @@ document.addEventListener("click", function(e){
         let item_id = e.target.closest("li").getAttribute("data-id");
         // 取得 localStorage 內的內容
         let tasks = JSON.parse(localStorage.getItem("tasks"));
-        tasks.forEach(function(task, i){
-          if(item_id == task.item_id){
+        tasks.forEach(function (task, i) {
+          if (item_id == task.item_id) {
             tasks[i].name = update_task_name;
           }
         });
@@ -280,11 +280,11 @@ document.addEventListener("click", function(e){
 });
 
 // ==== 排序 ===== //
-document.addEventListener("click", function(e){
+document.addEventListener("click", function (e) {
 
   // 往上
   //console.log( e.target.closest("li").previousElementSibling );
-  if(e.target.classList.contains("btn_up") && e.target.closest("li").previousElementSibling ){
+  if (e.target.classList.contains("btn_up") && e.target.closest("li").previousElementSibling) {
     let li_el = e.target.closest("li");
     let item_id = li_el.getAttribute("data-id");
     let clone_html = li_el.outerHTML; // <li>...</li>
@@ -297,7 +297,7 @@ document.addEventListener("click", function(e){
 
 
   // 往下
-  if(e.target.classList.contains("btn_down") && e.target.closest("li").nextElementSibling){
+  if (e.target.classList.contains("btn_down") && e.target.closest("li").nextElementSibling) {
     let li_el = e.target.closest("li");
     let item_id = li_el.getAttribute("data-id");
     let clone_html = li_el.outerHTML; // <li>...</li>
@@ -311,23 +311,23 @@ document.addEventListener("click", function(e){
 });
 
 // ==== 星號的重要性 ===== //
-document.addEventListener("click", function(e){
+document.addEventListener("click", function (e) {
 
   //console.log(e.target);
 
-  if(e.target.closest("span")){
+  if (e.target.closest("span")) {
     let span_el = e.target.closest("span");
-    if(span_el.classList.contains("star")){
+    if (span_el.classList.contains("star")) {
 
       let current_star = parseInt(span_el.getAttribute("data-star"));
       let star_span = span_el.closest("div.star_block").querySelectorAll("span.star");
       //console.log(star_span);
       // [span, span, span, span, span]
-      star_span.forEach(function(star_item, i){
+      star_span.forEach(function (star_item, i) {
 
-        if( parseInt(star_item.getAttribute("data-star")) <= current_star ){
+        if (parseInt(star_item.getAttribute("data-star")) <= current_star) {
           star_span[i].classList.add("-on");
-        }else{
+        } else {
           star_span[i].classList.remove("-on");
         }
 
@@ -336,8 +336,8 @@ document.addEventListener("click", function(e){
       // ******************* 更新 localStorage 中的 star 資料 ******************* //
       let item_id = span_el.closest("li").getAttribute("data-id");
       let tasks = JSON.parse(localStorage.getItem("tasks"));
-      tasks.forEach(function(task, i){
-        if(item_id == task.item_id){
+      tasks.forEach(function (task, i) {
+        if (item_id == task.item_id) {
           tasks[i].star = current_star;
         }
       });
