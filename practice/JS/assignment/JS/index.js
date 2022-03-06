@@ -85,27 +85,27 @@ function get_tasks() {
                 <li data-id = "${tasks[i].item_id}"">
                   <div class="item_flex">
                     <div class="left_block">
-                    <div class="btn_flex">
+                      <div class="btn_flex">
                         <button type="button" class="btn_up">往上</button>
                         <button type="button" class="btn_down">往下</button>
-                    </div>
+                      </div>
                     </div>
                     <div class="middle_block">
-                    <div class="star_block">
+                      <div class="star_block">
                         <span class="star" data-star="1"><i class="fas fa-star"></i></span>
                         <span class="star" data-star="2"><i class="fas fa-star"></i></span>
                         <span class="star" data-star="3"><i class="fas fa-star"></i></span>
                         <span class="star" data-star="4"><i class="fas fa-star"></i></span>
                         <span class="star" data-star="5"><i class="fas fa-star"></i></span>
-                    </div>
-                    <p class="para">`+ tasks[i].name + `</p>
-                    <input type="text" class="task_name_update -none" placeholder="更新待辦事項…" value="${tasks[i].name}">
+                      </div>
+                      <p class="para">`+ tasks[i].name + `</p>
+                      <input type="text" class="task_name_update -none" placeholder="更新待辦事項…" value="${tasks[i].name}">
                     </div>
                     <div class="right_block">
-                    <div class="btn_flex">
+                      <div class="btn_flex">
                         <button type="button" class="btn_update">更新</button>
                         <button type="button" class="btn_delete">移除</button>
-                    </div>
+                      </div>
                     </div>
                   </div>
                 </li>
@@ -152,7 +152,7 @@ document.addEventListener("click", function (e) {
   }
 });
 
-
+// 清空鍵
 let btn_empty = document.getElementsByClassName("btn_empty")[0];
 btn_empty.addEventListener("click", function () {
   if (btn_empty) {
@@ -175,9 +175,47 @@ btn_empty.addEventListener("click", function () {
   }
 });
 
-let btn_update = task_list.querySelectorAll("btn_update");
-btn_update.addEventListener("click", function (e) {
+// 更新鍵
+document.addEventListener("click", function (e) {
+  let btn_update = e.target.classList.contains("btn_update");
+  let task_list_li = e.target.closest("li");
+  let task_name_update = task_list_li.querySelector("input.task_name_update");
+  let p_el = task_list_li.querySelector("p.para");
 
-  let task_name_update = e.target.closest("task_name_update");
-  
+  if (btn_update) {
+    // 原本都是未定義屬性，當點擊更新後，增加屬性 true
+    // 點擊更新後切換class: -none
+    if (e.target.getAttribute("data-edit") == undefined) {
+      e.target.setAttribute("data-edit", true);
+      p_el.classList.toggle("-none");
+      task_name_update.classList.toggle("-none");
+    } else { 
+      let update_task_text = (task_name_update.value).trim();
+      if (update_task_text == "") {
+        alert("請輸入待辦事項");
+      } else {
+        p_el.innerHTML = update_task_text;
+        p_el.classList.toggle("-none");
+
+        task_name_update.value = update_task_text;
+        task_name_update.classList.toggle("-none");
+
+        e.target.removeAttribute("data-edit");
+        // 更新 localStorage 中，name 欄位的資料 //
+        let item_id = task_list_li.getAttribute("data-id");
+        // 取得 localStorage 內的內容
+        let tasks = JSON.parse(localStorage.getItem("tasks"));
+        tasks.forEach(function (task, i) {
+          if (item_id == task.item_id) {
+            tasks[i].name = update_task_text;
+          }
+        });
+        // 更新 localStorage
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+
+    }
+  }
+
+
 });

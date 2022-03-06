@@ -263,12 +263,14 @@ document.addEventListener("click", function(e){
         // ******************* 更新 localStorage 中，name 的資料 ******************* //
 
         let item_id = e.target.closest("li").getAttribute("data-id");
+        // 取得 localStorage 內的內容
         let tasks = JSON.parse(localStorage.getItem("tasks"));
         tasks.forEach(function(task, i){
           if(item_id == task.item_id){
             tasks[i].name = update_task_name;
           }
         });
+        // 更新 localStorage
         localStorage.setItem("tasks", JSON.stringify(tasks));
 
       }
