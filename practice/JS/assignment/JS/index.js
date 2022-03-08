@@ -4,9 +4,54 @@ let task_list = document.getElementsByClassName("task_list")[0];
 let task_add = document.getElementsByClassName("task_add")[0];
 let task_name = document.getElementsByClassName("task_name")[0];
 
+// function get_tasks() {
+//   let tasks = JSON.parse(localStorage.getItem("tasks"));
+//   if (tasks) {
+//     let list_html = "";
+//     tasks.forEach(function (item, i) { // [{}, {}]
+
+//       list_html += `
+//         <li data-id="${item.item_id}">
+//           <div class="item_flex">
+//             <div class="left_block">
+//               <div class="btn_flex">
+//                 <button type="button" class="btn_up">往上</button>
+//                 <button type="button" class="btn_down">往下</button>
+//               </div>
+//             </div>
+//             <div class="middle_block">
+//               <div class="star_block">
+//                 <span class="star${(item.star >= 1 ? " -on" : "")}" data-star="1"><i class="fas fa-star"></i></span>
+//                 <span class="star${(item.star >= 2 ? " -on" : "")}" data-star="2"><i class="fas fa-star"></i></span>
+//                 <span class="star${(item.star >= 3 ? " -on" : "")}" data-star="3"><i class="fas fa-star"></i></span>
+//                 <span class="star${(item.star >= 4 ? " -on" : "")}" data-star="4"><i class="fas fa-star"></i></span>
+//                 <span class="star${(item.star >= 5 ? " -on" : "")}" data-star="5"><i class="fas fa-star"></i></span>
+//               </div>
+//               <p class="para">${item.name}</p>
+//               <input type="text" class="task_name_update -none" placeholder="更新待辦事項…" value="${item.name}">
+//             </div>
+//             <div class="right_block">
+//               <div class="btn_flex">
+//                 <button type="button" class="btn_update">更新</button>
+//                 <button type="button" class="btn_delete">移除</button>
+//               </div>
+//             </div>
+//           </div>
+//         </li>
+//       `;
+
+//     });
+//     let ul_task_list = document.getElementsByClassName("task_list")[0];
+//     ul_task_list.innerHTML = list_html;
+
+//   }
+
+// }
+
 function get_tasks() {
   let tasks = JSON.parse(localStorage.getItem("tasks"));
-  if (tasks) {
+  // console.log(tasks);
+  if (tasks != null) {
     let list_html = "";
     tasks.forEach(function (item, i) { // [{}, {}]
 
@@ -41,56 +86,12 @@ function get_tasks() {
       `;
 
     });
-    let ul_task_list = document.getElementsByClassName("task_list")[0];
-    ul_task_list.innerHTML = list_html;
+    // let task_list = document.getElementsByClassName("task_list")[0];
+    task_list.innerHTML = list_html;
+    // task_list.insertAdjacentHTML("afterbegin", list_html);
 
   }
-
 }
-
-// function get_tasks() {
-//   let tasks = JSON.parse(localStorage.getItem("tasks"));
-//   // console.log(tasks);
-//   if (tasks != null) {
-//     let list_html = "";
-//     for (let i = 0; i < tasks.length; i++) {
-//       // console.log(tasks);
-//       list_html += `
-//                 <li data-id = "${tasks[i].item_id}"">
-//                   <div class="item_flex">
-//                     <div class="left_block">
-//                       <div class="btn_flex">
-//                         <button type="button" class="btn_up">往上</button>
-//                         <button type="button" class="btn_down">往下</button>
-//                       </div>
-//                     </div>
-//                     <div class="middle_block">
-//                       <div class="star_block">
-//                       <span class="star${(tasks[i].star >= 1 ? " -on" : "")}" data-star="1"><i class="fas fa-star"></i></span>
-//                       <span class="star${(tasks[i].star >= 2 ? " -on" : "")}" data-star="1"><i class="fas fa-star"></i></span>
-//                       <span class="star${(tasks[i].star >= 3 ? " -on" : "")}" data-star="1"><i class="fas fa-star"></i></span>
-//                       <span class="star${(tasks[i].star >= 4 ? " -on" : "")}" data-star="1"><i class="fas fa-star"></i></span>
-//                       <span class="star${(tasks[i].star >= 5 ? " -on" : "")}" data-star="1"><i class="fas fa-star"></i></span>
-//                       </div>
-//                       <p class="para">`+ tasks[i].name + `</p>
-//                       <input type="text" class="task_name_update -none" placeholder="更新待辦事項…" value="${tasks[i].name}">
-//                     </div>
-//                     <div class="right_block">
-//                       <div class="btn_flex">
-//                         <button type="button" class="btn_update">更新</button>
-//                         <button type="button" class="btn_delete">移除</button>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 </li>
-//                 `
-//     }
-//     // let task_list = document.getElementsByClassName("task_list")[0];
-//     task_list.innerHTML = list_html;
-//     // task_list.insertAdjacentHTML("afterbegin", list_html);
-
-//   }
-// }
 
 // 更新 localStorage 中的排序
 function items_sort(item_id, direction) {
